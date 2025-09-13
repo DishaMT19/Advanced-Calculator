@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator with Unit Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="header">
+            <h1>🧮 Advanced Calculator</h1>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        </div>
+        
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('calculator')">Calculator</button>
+            <button class="mode-btn" onclick="setMode('converter')">Unit Converter</button>
+        </div>
+
+        <div class="calculator-section active" id="calculatorSection">
+            <div class="display">
+                <div id="expression"></div>
+                <div id="result">0</div>
+            </div>
+
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="setCalcMode('basic')">Basic</button>
+                <button class="mode-btn" onclick="setCalcMode('scientific')">Scientific</button>
+            </div>
+
+            <div class="scientific-buttons" id="scientificButtons">
+                <button class="function" onclick="addFunction('sin(')">sin</button>
+                <button class="function" onclick="addFunction('cos(')">cos</button>
+                <button class="function" onclick="addFunction('tan(')">tan</button>
+                <button class="function" onclick="addFunction('log(')">log</button>
+                <button class="function" onclick="addFunction('ln(')">ln</button>
+                <button class="function" onclick="addFunction('sqrt(')">√</button>
+                <button class="function" onclick="addOperator('^')">x^y</button>
+                <button class="function" onclick="addFunction('!')">n!</button>
+                <button class="function" onclick="insertValue('3.14159')">π</button>
+                <button class="function" onclick="insertValue('2.71828')">e</button>
+                <button class="function" onclick="addOperator('%')">%</button>
+                <button class="function" onclick="insertValue(ans)">ANS</button>
+            </div>
+
+            <div class="buttons-grid">
+                <button class="clear" onclick="clearAll()">C</button>
+                <button class="operator" onclick="deleteLast()">⌫</button>
+                <button class="operator" onclick="addOperator('/')">÷</button>
+                <button class="operator" onclick="addOperator('*')">×</button>
+                
+                <button class="number" onclick="addNumber('7')">7</button>
+                <button class="number" onclick="addNumber('8')">8</button>
+                <button class="number" onclick="addNumber('9')">9</button>
+                <button class="operator" onclick="addOperator('-')">-</button>
+                
+                <button class="number" onclick="addNumber('4')">4</button>
+                <button class="number" onclick="addNumber('5')">5</button>
+                <button class="number" onclick="addNumber('6')">6</button>
+                <button class="operator" onclick="addOperator('+')">+</button>
+                
+                <button class="number" onclick="addNumber('1')">1</button>
+                <button class="number" onclick="addNumber('2')">2</button>
+                <button class="number" onclick="addNumber('3')">3</button>
+                <button class="operator" onclick="addOperator('(')">(</button>
+                
+                <button class="number zero" onclick="addNumber('0')">0</button>
+                <button class="number" onclick="addNumber('.')">.</button>
+                <button class="operator" onclick="addOperator(')')">)</button>
+                
+                <button class="equals" onclick="calculate()" style="grid-column: span 4;">=</button>
+            </div>
+
+            <div class="history">
+                <h3>📜 History</h3>
+                <div id="historyList"></div>
+            </div>
+        </div>
+
+        <div class="converter-section" id="converterSection">
+            <div class="unit-categories">
+                <button class="unit-category-btn active" onclick="setUnitCategory('length')">📏 Length</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('weight')">⚖️ Weight</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('temperature')">🌡️ Temp</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('area')">📐 Area</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('volume')">🧊 Volume</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('speed')">🏃 Speed</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('time')">⏰ Time</button>
+                <button class="unit-category-btn" onclick="setUnitCategory('data')">💾 Data</button>
+            </div>
+
+            <div class="converter-grid">
+                <div class="converter-card">
+                    <h3 id="converterTitle">Length Converter</h3>
+                    <div class="converter-inputs">
+                        <div class="converter-input">
+                            <label>From:</label>
+                            <input type="number" id="fromValue" oninput="convertUnit()" placeholder="Enter value">
+                            <select id="fromUnit" onchange="convertUnit()">
+                                </select>
+                        </div>
+                        <div class="converter-arrow">⇄</div>
+                        <div class="converter-input">
+                            <label>To:</label>
+                            <input type="number" id="toValue" readonly placeholder="Result">
+                            <select id="toUnit" onchange="convertUnit()">
+                                </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>Quick Conversions</h3>
+                    <div id="quickConversions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
